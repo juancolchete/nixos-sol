@@ -9,8 +9,8 @@ in {
       ./boot.nix
     ]; 
 
-  user = builtins.getEnv "user"
-  networking.hostName = "nixos"; # Define your hostname.
+  user = builtins.getEnv "user";
+  networking.hostName = "nixos";
   networking.networkmanager.enable = true;
   virtualisation.docker.enable = true;
   time.timeZone = "America/Sao_Paulo";
