@@ -65,29 +65,15 @@ in {
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-      wget 
-      vim  
       git 
-      gcc 
       clang
-      gnumake42
-      cmake
       pkg-config 
       llvm
-      hidapi
       systemd
-      udev
-      openssl
       anchor
       rustup
       pkg-config
-      rustfmt
-      llvm
-      protobuf
-      zlib
       steam-run
-      solana-cli
-      unzip
   ];
 
   system.stateVersion = "24.11";
