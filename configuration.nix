@@ -9,7 +9,7 @@ in {
       ./boot.nix
     ]; 
 
-
+  user = builtins.getEnv "user"
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
   virtualisation.docker.enable = true;
@@ -50,9 +50,9 @@ in {
     pulse.enable = true;
   };
 
-  users.users.${builtins.getEnv "user"} = {
+  users.users.${user} = {
     isNormalUser = true;
-    description = "juanc";
+    description = "";
     extraGroups = [ "networkmanager" "wheel"];
     packages = with pkgs; [
       nodejs
@@ -94,21 +94,21 @@ in {
   system.stateVersion = "24.11";
   system.activationScripts.rustup = ''
     echo $user 
-    PATH=${pkgs.rustup}/bin:/home/juanc/.cargo/bin:${pkgs.curl}/bin:${pkgs.bash}/bin:run/current-system/sw/bin:/run/current-system/sw/bin/tar:/run/current-system/sw/bin/clang:$PATH
-    touch /home/juanc/.bashrc 
-    rm /home/juanc/.bashrc
-    touch /home/juanc/.bashrc 
-    echo export PATH=${pkgs.solana-cli}:/home/juanc/programs/bin:'$PATH' >> /home/juanc/.bashrc
-    echo export LIBCLANG_PATH=${pkgs.llvmPackages.libclang.lib}/lib >> /home/juanc/.bashrc
-    echo export LLVM_CONFIG_PATH=${pkgs.llvm}/bin/llvm-config/bin/llvm-config >> /home/juanc/.bashrc
+    PATH=${pkgs.rustup}/bin:/home/${user}/.cargo/bin:${pkgs.curl}/bin:${pkgs.bash}/bin:run/current-system/sw/bin:/run/current-system/sw/bin/tar:/run/current-system/sw/bin/clang:$PATH
+    touch /home/${user}/.bashrc 
+    rm /home/${user}/.bashrc
+    touch /home/${user}/.bashrc 
+    echo export PATH=${pkgs.solana-cli}:/home/${user}/programs/bin:'$PATH' >> /home/${user}/.bashrc
+    echo export LIBCLANG_PATH=${pkgs.llvmPackages.libclang.lib}/lib >> /home/${user}/.bashrc
+    echo export LLVM_CONFIG_PATH=${pkgs.llvm}/bin/llvm-config/bin/llvm-config >> /home/${user}/.bashrc
     echo ${pkgs.systemd.dev}
-    echo export PKG_CONFIG_PATH=${pkgs.systemd.dev}/lib/pkgconfig >> /home/juanc/.bashrc
-    echo export CFLAGS="-I${pkgs.systemd.dev}/include" >> /home/juanc/.bashrc
-    echo export LDFLAGS="-L${pkgs.systemd.dev}/lib" >> /home/juanc/.bashrc
-    echo export CC=/run/current-system/sw/bin/clang >> /home/juanc/.bashrc
-    echo export NIXPKGS_ALLOW_UNFREE=1 >> /home/juanc/.bashrc
-    echo alias build-sbf=cargo-build-sbf >> /home/juanc/.bashrc
-    source /home/juanc/.bashrc
+    echo export PKG_CONFIG_PATH=${pkgs.systemd.dev}/lib/pkgconfig >> /home/${user}/.bashrc
+    echo export CFLAGS="-I${pkgs.systemd.dev}/include" >> /home/${user}/.bashrc
+    echo export LDFLAGS="-L${pkgs.systemd.dev}/lib" >> /home/${user}/.bashrc
+    echo export CC=/run/current-system/sw/bin/clang >> /home/${user}/.bashrc
+    echo export NIXPKGS_ALLOW_UNFREE=1 >> /home/${user}/.bashrc
+    echo alias build-sbf=cargo-build-sbf >> /home/${user}/.bashrc
+    source /home/${user}/.bashrc
     alias build-sbf=cargo-build-sbf
   '';
 
