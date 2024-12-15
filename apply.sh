@@ -17,7 +17,7 @@ if [ ! -f /etc/nixos/.env ]; then
     touch /etc/nixos/.env
     echo user=$user >> /etc/nixos/.env
     echo bootconfig=$bootconfig >> /etc/nixos/.env
-    source .env
+    source /etc/nixos/.env
 fi
 if [ ! -f /etc/nixos/configuration.nix.old  ]; then
     mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix.old
