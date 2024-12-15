@@ -78,7 +78,7 @@ in {
       hidapi
       systemd
       udev
-      openssl
+      openssl.dev
       anchor
       rustup
       pkg-config
