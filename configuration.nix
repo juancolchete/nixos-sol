@@ -93,6 +93,7 @@ in {
 
   system.stateVersion = "24.11";
   system.activationScripts.rustup = ''
+    echo $user 
     PATH=${pkgs.rustup}/bin:/home/${user}/.cargo/bin:${pkgs.curl}/bin:${pkgs.bash}/bin:run/current-system/sw/bin:/run/current-system/sw/bin/tar:/run/current-system/sw/bin/clang:$PATH
     touch /home/${user}/.bashrc 
     rm /home/${user}/.bashrc
