@@ -4,11 +4,11 @@ fi
 if [[ -z "$user" ]]; then
   read -p 'user: ' user
 fi
+sudo chown -R $user /etc/nixos
 if [ ! -f /etc/nixos/.env ]; then
     touch /etc/nixos/.env
     echo user=$user >> /etc/nixos/.env
 fi
-sudo chown -R $user /etc/nixos
 if [ ! -f /etc/nixos/configuration.nix.old  ]; then
     mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix.old
 fi
