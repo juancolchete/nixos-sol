@@ -21,9 +21,9 @@ if [ ! -f /etc/nixos/.env ]; then
 fi
 if [ ! -f /etc/nixos/env.nix ]; then
     touch /etc/nixos/env.nix
-    echo { >> env.nix
-    echo "user=$user;" >> env.nix
-    echo } >> env.nix
+    echo { >> /etc/nixos/env.nix
+    echo "user=$user;" >> /etc/nixos/env.nix
+    echo } >> /etc/nixos/env.nix
 fi
 if [ ! -f /etc/nixos/configuration.nix.old  ]; then
     mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix.old
