@@ -9,6 +9,7 @@ if [ ! -f /etc/nixos/.env ]; then
     echo user=$user >> /etc/nixos/.env
 fi
 sudo chown -R $user /etc/nixos
+rm /etc/nixos/configuration.nix 
 curl https://raw.githubusercontent.com/juancolchete/nixos-sol/refs/heads/main/configuration.nix -o /etc/nixos/configuration.nix 
 sudo nixos-rebuild switch
 source ~/.bashrc
