@@ -50,7 +50,7 @@ in {
     pulse.enable = true;
   };
 
-  users.users.juanc = {
+  users.users.${builtins.getEnv "user"} = {
     isNormalUser = true;
     description = "juanc";
     extraGroups = [ "networkmanager" "wheel"];
