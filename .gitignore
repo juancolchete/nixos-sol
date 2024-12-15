@@ -1,3 +1,4 @@
 env.nix
 hardware-configuration.nix
+configuration.nix.old
 .env
