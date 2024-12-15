@@ -77,6 +77,7 @@ in {
       rustfmt
       steam-run
       solana-cli
+      openssl
   ];
 
   system.stateVersion = "24.11";
