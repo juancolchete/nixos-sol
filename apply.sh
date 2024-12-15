@@ -5,8 +5,12 @@ if [[ -z "$user" ]]; then
   read -p 'user: ' user
 fi
 if [[ -z "$bootconfig" ]]; then
-  PS3='Choose boot file: '
-  bootconfig=("boot.nix" "boot-proxmox.nix")
+ PS3='Please enter your choice: '
+ options=("boot.nix" "boot-proxmox.nix")
+ select bootconfig in "${options[@]}"
+ do
+  break
+ done
 fi
 sudo chown -R $user /etc/nixos
 if [ ! -f /etc/nixos/.env ]; then
