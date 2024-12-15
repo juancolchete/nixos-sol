@@ -52,7 +52,7 @@ in {
 
   users.users.${user} = {
     isNormalUser = true;
-    description = "$user";
+    description = "${user}";
     extraGroups = [ "networkmanager" "wheel" "docker"];
     packages = with pkgs; [
       nodejs
@@ -78,7 +78,7 @@ in {
       hidapi
       systemd
       udev
-      openssl.dev
+      openssl
       anchor
       rustup
       pkg-config
@@ -93,21 +93,21 @@ in {
 
   system.stateVersion = "24.11";
   system.activationScripts.rustup = ''
-    PATH=${pkgs.rustup}/bin:/home/$user/.cargo/bin:${pkgs.curl}/bin:${pkgs.bash}/bin:run/current-system/sw/bin:/run/current-system/sw/bin/tar:/run/current-system/sw/bin/clang:$PATH
-    touch /home/$user/.bashrc 
-    rm /home/$user/.bashrc
-    touch /home/$user/.bashrc 
-    echo export PATH=${pkgs.solana-cli}:/home/$user/programs/bin:'$PATH' >> /home/$user/.bashrc
-    echo export LIBCLANG_PATH=${pkgs.llvmPackages.libclang.lib}/lib >> /home/$user/.bashrc
-    echo export LLVM_CONFIG_PATH=${pkgs.llvm}/bin/llvm-config/bin/llvm-config >> /home/$user/.bashrc
+    PATH=${pkgs.rustup}/bin:/home/${user}/.cargo/bin:${pkgs.curl}/bin:${pkgs.bash}/bin:run/current-system/sw/bin:/run/current-system/sw/bin/tar:/run/current-system/sw/bin/clang:$PATH
+    touch /home/${user}/.bashrc 
+    rm /home/${user}/.bashrc
+    touch /home/${user}/.bashrc 
+    echo export PATH=${pkgs.solana-cli}:/home/${user}/programs/bin:'$PATH' >> /home/${user}/.bashrc
+    echo export LIBCLANG_PATH=${pkgs.llvmPackages.libclang.lib}/lib >> /home/${user}/.bashrc
+    echo export LLVM_CONFIG_PATH=${pkgs.llvm}/bin/llvm-config/bin/llvm-config >> /home/${user}/.bashrc
     echo ${pkgs.systemd.dev}
-    echo export PKG_CONFIG_PATH=${pkgs.systemd.dev}/lib/pkgconfig >> /home/$user/.bashrc
-    echo export CFLAGS="-I${pkgs.systemd.dev}/include" >> /home/$user/.bashrc
-    echo export LDFLAGS="-L${pkgs.systemd.dev}/lib" >> /home/$user/.bashrc
-    echo export CC=/run/current-system/sw/bin/clang >> /home/$user/.bashrc
-    echo export NIXPKGS_ALLOW_UNFREE=1 >> /home/$user/.bashrc
-    echo alias build-sbf=cargo-build-sbf >> /home/$user/.bashrc
-    source /home/$user/.bashrc
+    echo export PKG_CONFIG_PATH=${pkgs.systemd.dev}/lib/pkgconfig >> /home/${user}/.bashrc
+    echo export CFLAGS="-I${pkgs.systemd.dev}/include" >> /home/${user}/.bashrc
+    echo export LDFLAGS="-L${pkgs.systemd.dev}/lib" >> /home/${user}/.bashrc
+    echo export CC=/run/current-system/sw/bin/clang >> /home/${user}/.bashrc
+    echo export NIXPKGS_ALLOW_UNFREE=1 >> /home/${user}/.bashrc
+    echo alias build-sbf=cargo-build-sbf >> /home/${user}/.bashrc
+    source /home/${user}/.bashrc
     alias build-sbf=cargo-build-sbf
   '';
 
