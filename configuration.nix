@@ -53,7 +53,7 @@ in {
   users.users.juanc = {
     isNormalUser = true;
     description = "juanc";
-    extraGroups = [ "networkmanager" "wheel" "docker"];
+    extraGroups = [ "networkmanager" "wheel"];
     packages = with pkgs; [
       nodejs
       corepack_22
