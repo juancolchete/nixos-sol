@@ -4,16 +4,21 @@ fi
 if [[ -z "$user" ]]; then
   read -p 'user: ' user
 fi
+if [[ -z "$bootconfig" ]]; then
+  PS3='Choose boot file: '
+  bootconfig=("boot.nix" "boot-proxmox.nix")
+fi
 sudo chown -R $user /etc/nixos
 if [ ! -f /etc/nixos/.env ]; then
     touch /etc/nixos/.env
     echo user=$user >> /etc/nixos/.env
+    echo bootconfig=$bootconfig >> /etc/nixos/.env
 fi
 if [ ! -f /etc/nixos/configuration.nix.old  ]; then
     mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix.old
 fi
 rm /etc/nixos/configuration.nix 
-curl -v -H "Cache-Control: no-cache" https://raw.githubusercontent.com/juancolchete/nixos-sol/refs/heads/main/boot-proxmox.nix -o /etc/nixos/boot-proxmox.nix 
+curl -v -H "Cache-Control: no-cache" https://raw.githubusercontent.com/juancolchete/nixos-sol/refs/heads/main/$bootconfig -o /etc/nixos/boot.nix 
 curl -v -H "Cache-Control: no-cache" https://raw.githubusercontent.com/juancolchete/nixos-sol/refs/heads/main/configuration.nix -o /etc/nixos/configuration.nix 
 sudo nixos-rebuild switch
 source ~/.bashrc
