@@ -16,8 +16,9 @@ if [ ! -f /etc/nixos/.env ]; then
 fi
 if [ ! -f /etc/nixos/configuration.nix.old  ]; then
     mv /etc/nixos/configuration.nix /etc/nixos/configuration.nix.old
+else
+    rm /etc/nixos/configuration.nix 
 fi
-rm /etc/nixos/configuration.nix 
 curl -v -H "Cache-Control: no-cache" https://raw.githubusercontent.com/juancolchete/nixos-sol/refs/heads/main/$bootconfig -o /etc/nixos/boot.nix 
 curl -v -H "Cache-Control: no-cache" https://raw.githubusercontent.com/juancolchete/nixos-sol/refs/heads/main/configuration.nix -o /etc/nixos/configuration.nix 
 sudo nixos-rebuild switch
