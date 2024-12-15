@@ -50,7 +50,7 @@ in {
     pulse.enable = true;
   };
 
-  users.users."$user" = {
+  users.users.${user} = {
     isNormalUser = true;
     description = "$user";
     extraGroups = [ "networkmanager" "wheel" "docker"];
