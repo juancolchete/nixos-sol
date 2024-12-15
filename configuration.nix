@@ -9,7 +9,6 @@ in {
       ./boot.nix
     ]; 
 
-  user = builtins.getEnv "user";
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
   virtualisation.docker.enable = true;
@@ -50,7 +49,7 @@ in {
     pulse.enable = true;
   };
 
-  users.users.${user} = {
+  users.users.${builtins.getEnv "user"} = {
     isNormalUser = true;
     description = "";
     extraGroups = [ "networkmanager" "wheel"];
@@ -94,21 +93,21 @@ in {
   system.stateVersion = "24.11";
   system.activationScripts.rustup = ''
     echo $user 
-    PATH=${pkgs.rustup}/bin:/home/${user}/.cargo/bin:${pkgs.curl}/bin:${pkgs.bash}/bin:run/current-system/sw/bin:/run/current-system/sw/bin/tar:/run/current-system/sw/bin/clang:$PATH
-    touch /home/${user}/.bashrc 
-    rm /home/${user}/.bashrc
-    touch /home/${user}/.bashrc 
-    echo export PATH=${pkgs.solana-cli}:/home/${user}/programs/bin:'$PATH' >> /home/${user}/.bashrc
-    echo export LIBCLANG_PATH=${pkgs.llvmPackages.libclang.lib}/lib >> /home/${user}/.bashrc
-    echo export LLVM_CONFIG_PATH=${pkgs.llvm}/bin/llvm-config/bin/llvm-config >> /home/${user}/.bashrc
+    PATH=${pkgs.rustup}/bin:/home/${builtins.getEnv "user"}/.cargo/bin:${pkgs.curl}/bin:${pkgs.bash}/bin:run/current-system/sw/bin:/run/current-system/sw/bin/tar:/run/current-system/sw/bin/clang:$PATH
+    touch /home/${builtins.getEnv "user"}/.bashrc 
+    rm /home/${builtins.getEnv "user"}/.bashrc
+    touch /home/${builtins.getEnv "user"}/.bashrc 
+    echo export PATH=${pkgs.solana-cli}:/home/${builtins.getEnv "user"}/programs/bin:'$PATH' >> /home/${builtins.getEnv "user"}/.bashrc
+    echo export LIBCLANG_PATH=${pkgs.llvmPackages.libclang.lib}/lib >> /home/${builtins.getEnv "user"}/.bashrc
+    echo export LLVM_CONFIG_PATH=${pkgs.llvm}/bin/llvm-config/bin/llvm-config >> /home/${builtins.getEnv "user"}/.bashrc
     echo ${pkgs.systemd.dev}
-    echo export PKG_CONFIG_PATH=${pkgs.systemd.dev}/lib/pkgconfig >> /home/${user}/.bashrc
-    echo export CFLAGS="-I${pkgs.systemd.dev}/include" >> /home/${user}/.bashrc
-    echo export LDFLAGS="-L${pkgs.systemd.dev}/lib" >> /home/${user}/.bashrc
-    echo export CC=/run/current-system/sw/bin/clang >> /home/${user}/.bashrc
-    echo export NIXPKGS_ALLOW_UNFREE=1 >> /home/${user}/.bashrc
-    echo alias build-sbf=cargo-build-sbf >> /home/${user}/.bashrc
-    source /home/${user}/.bashrc
+    echo export PKG_CONFIG_PATH=${pkgs.systemd.dev}/lib/pkgconfig >> /home/${builtins.getEnv "user"}/.bashrc
+    echo export CFLAGS="-I${pkgs.systemd.dev}/include" >> /home/${builtins.getEnv "user"}/.bashrc
+    echo export LDFLAGS="-L${pkgs.systemd.dev}/lib" >> /home/${builtins.getEnv "user"}/.bashrc
+    echo export CC=/run/current-system/sw/bin/clang >> /home/${builtins.getEnv "user"}/.bashrc
+    echo export NIXPKGS_ALLOW_UNFREE=1 >> /home/${builtins.getEnv "user"}/.bashrc
+    echo alias build-sbf=cargo-build-sbf >> /home/${builtins.getEnv "user"}/.bashrc
+    source /home/${builtins.getEnv "user"}/.bashrc
     alias build-sbf=cargo-build-sbf
   '';
 
