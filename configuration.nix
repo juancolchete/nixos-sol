@@ -6,7 +6,7 @@ in {
   imports =
     [
       ./hardware-configuration.nix
-      ./boot-proxmox.nix
+      ./boot.nix
     ]; 
 
 
