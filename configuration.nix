@@ -72,6 +72,7 @@ in {
       openssl
       pkg-config
       gcc
+      udev
       git 
       anchor
       rustup
