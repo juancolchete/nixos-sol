@@ -69,14 +69,6 @@ in {
       pkg-config 
       llvm
       systemd
-      openssl
-      gcc
-      udev
-      hidapi
-      zlib
-      protobuf
-      gnumake42
-      cmake
       git 
       anchor
       rustup
