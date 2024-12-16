@@ -22,7 +22,7 @@ fi
 if [ ! -f /etc/nixos/env.nix ]; then
     touch /etc/nixos/env.nix
     echo { >> /etc/nixos/env.nix
-    echo user=\"$user\"; >> /etc/nixos/env.nix
+    echo "user=\"$user\";" >> /etc/nixos/env.nix
     echo } >> /etc/nixos/env.nix
 fi
 if [ ! -f /etc/nixos/configuration.nix.old  ]; then
