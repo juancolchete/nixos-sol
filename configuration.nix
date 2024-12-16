@@ -69,7 +69,6 @@ in {
       pkg-config 
       llvm
       systemd
-      cmake
       gnumake42
       git 
       anchor
