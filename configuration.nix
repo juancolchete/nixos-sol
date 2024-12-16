@@ -70,7 +70,6 @@ in {
       llvm
       systemd
       openssl
-      pkg-config
       gcc
       udev
       hidapi
