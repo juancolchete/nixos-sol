@@ -69,6 +69,7 @@ in {
       pkg-config 
       llvm
       systemd
+      cmake
       git 
       anchor
       rustup
