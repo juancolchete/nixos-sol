@@ -70,6 +70,7 @@ in {
       pkg-config 
       llvm
       systemd
+      openssl
       anchor
       rustup
       pkg-config
