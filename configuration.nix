@@ -73,6 +73,11 @@ in {
       pkg-config
       gcc
       udev
+      hidapi
+      zlib
+      protobuf
+      gnumake42
+      cmake
       git 
       anchor
       rustup
