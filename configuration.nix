@@ -70,6 +70,7 @@ in {
       llvm
       systemd
       gnumake42
+      protobuf
       git 
       anchor
       rustup
