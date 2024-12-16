@@ -65,15 +65,16 @@ in {
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-      git 
       clang
       pkg-config 
       llvm
       systemd
       openssl
+      pkg-config
+      gcc
+      git 
       anchor
       rustup
-      pkg-config
       steam-run
   ];
 
